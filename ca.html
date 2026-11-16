@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Cafeteria Ordering System</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+nav{
+background:#ff6b00;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav h2{
+color:white;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:20px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+height:90vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+background:url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80");
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:55px;
+}
+
+.hero p{
+font-size:22px;
+margin:15px 0;
+}
+
+.btn{
+background:#ff6b00;
+padding:12px 25px;
+text-decoration:none;
+color:white;
+border-radius:5px;
+}
+
+section{
+padding:60px 40px;
+}
+
+h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+.menu-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card h3,
+.card p{
+padding:10px;
+}
+
+.card button{
+width:100%;
+padding:12px;
+border:none;
+background:#ff6b00;
+color:white;
+cursor:pointer;
+}
+
+.card button:hover{
+background:#e55d00;
+}
+
+#cart{
+background:white;
+padding:30px;
+border-radius:10px;
+margin-top:30px;
+}
+
+#cartItems li{
+margin:10px 0;
+font-size:18px;
+}
+
+.remove-btn{
+background:red;
+color:white;
+border:none;
+padding:5px 10px;
+margin-left:10px;
+cursor:pointer;
+}
+
+form{
+max-width:500px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+}
+
+form input,
+form select{
+width:100%;
+padding:12px;
+margin:10px 0;
+}
+
+form button{
+width:100%;
+padding:12px;
+background:#ff6b00;
+border:none;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+}
+
+nav ul{
+margin-top:10px;
+}
+
+.hero h1{
+font-size:35px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>Campus Cafeteria</h2>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#checkout">Checkout</a></li>
+</ul>
+</nav>
+
+<section id="home" class="hero">
+<h1>Campus Cafeteria Ordering System</h1>
+<p>Delicious Food Delivered To Students</p>
+<a href="#menu" class="btn">Order Now</a>
+</section>
+
+<section id="about">
+<h2>About Our Cafeteria</h2>
+
+<p style="text-align:center;font-size:18px;">
+We provide fresh, hygienic and affordable food for all students and faculty members.
+Enjoy burgers, pizza, pasta, beverages and many more delicious items.
+</p>
+</section>
+
+<section id="menu">
+<h2>Menu</h2>
+
+<div class="menu-container">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+<h3>Burger</h3>
+<p>₹120</p>
+<button onclick="addToCart('Burger',120)">Add To Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<h3>Pizza</h3>
+<p>₹250</p>
+<button onclick="addToCart('Pizza',250)">Add To Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246">
+<h3>French Fries</h3>
+<p>₹100</p>
+<button onclick="addToCart('French Fries',100)">Add To Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841">
+<h3>Pasta</h3>
+<p>₹180</p>
+<button onclick="addToCart('Pasta',180)">Add To Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d">
+<h3>Noodles</h3>
+<p>₹150</p>
+<button onclick="addToCart('Noodles',150)">Add To Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+<h3>Coffee</h3>
+<p>₹80</p>
+<button onclick="addToCart('Coffee',80)">Add To Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb">
+<h3>Ice Cream</h3>
+<p>₹90</p>
+<button onclick="addToCart('Ice Cream',90)">Add To Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
+<h3>Cake</h3>
+<p>₹140</p>
+<button onclick="addToCart('Cake',140)">Add To Cart</button>
+</div>
+
+</div>
+
+<div id="cart">
+<h2>Your Cart</h2>
+<ul id="cartItems"></ul>
+
+<h3>Total: ₹<span id="total">0</span></h3>
+</div>
+</section>
+
+<section id="history">
+    <h2>Order History</h2>
+
+    <div id="orderHistory" style="
+        background:white;
+        padding:20px;
+        border-radius:10px;
+        max-width:800px;
+        margin:auto;
+    ">
+        <p>No orders placed yet.</p>
+    </div>
+</section>
+
+<section id="checkout">
+<h2>Checkout</h2>
+
+<form id="orderForm">
+
+<input type="text" placeholder="Student Name" required>
+
+<input type="text" placeholder="Roll Number" required>
+
+<input type="tel" placeholder="Mobile Number" required>
+
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash</option>
+<option>UPI</option>
+<option>Card</option>
+</select>
+
+<button type="submit">Place Order</button>
+
+</form>
+</section>
+
+<footer>
+<p>© 2026 Campus Cafeteria Ordering System</p>
+</footer>
+
+<script>
+
+let total = 0;
+
+function addToCart(item, price){
+
+const cart = document.getElementById("cartItems");
+
+const li = document.createElement("li");
+
+li.innerHTML =
+`${item} - ₹${price}
+<button class="remove-btn"
+onclick="removeItem(this,${price})">
+Remove
+</button>`;
+
+cart.appendChild(li);
+
+total += price;
+
+document.getElementById("total").innerText = total;
+}
+
+function removeItem(btn, price){
+
+btn.parentElement.remove();
+
+total -= price;
+
+document.getElementById("total").innerText = total;
+}
+
+document.getElementById("orderForm")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+if(total === 0){
+alert("Please add items to cart first.");
+return;
+}
+
+alert("Order Placed Successfully!\nTotal Amount: ₹" + total);
+
+document.getElementById("cartItems").innerHTML = "";
+
+document.getElementById("total").innerText = "0";
+
+total = 0;
+
+this.reset();
+
+});
+</script>
+
+</body>
+</html>
